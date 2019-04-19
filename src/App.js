@@ -1,27 +1,45 @@
 // Import a library to help create a component
-import React from 'react';
+import React, { Component } from 'react';
 import { View, StatusBar, Platform } from 'react-native';
-import Header from './components/Header';
+import firebase from 'firebase';
+import { Header } from './components/Commons';
+import LoginForm from './components/LoginForm';
 
 // Create a component
-const App = () => (
-  <View style={{ flex: 1 }}>
-    <View
-      style={{
-        backgroundColor: '#F8F8F8',
-        height: Platform.OS === 'ios' ? 20 : StatusBar.currentHeight,
-        }}
-    >
-      <StatusBar
-        translucent
-        backgroundColor="#F8F8F8"
-        barStyle="dark-content"
-      />
-    </View>
-    <View style={{ flex: 1 }}>
-      <Header headerText={'Firebase Authentification'} />
-    </View>
-  </View>
-);
+class App extends Component {
+  componentWillMount() {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyD5l_cM6uKQbHlX3iVpf1aMwo-f3qZmUyY',
+      authDomain: 'auth-fbc12.firebaseapp.com',
+      databaseURL: 'https://auth-fbc12.firebaseio.com',
+      projectId: 'auth-fbc12',
+      storageBucket: 'auth-fbc12.appspot.com',
+      messagingSenderId: '177346767026'
+    });
+  };
+
+  render() {
+    return (
+      <View style={{ flex: 1 }}>
+        <View
+          style={{
+            backgroundColor: '#F8F8F8',
+            height: Platform.OS === 'ios' ? 20 : StatusBar.currentHeight,
+            }}
+        >
+          <StatusBar
+            translucent
+            backgroundColor="#F8F8F8"
+            barStyle="dark-content"
+          />
+        </View>
+        <View style={{ flex: 1 }}>
+          <Header headerText={'Firebase Authentication'} />
+          <LoginForm />
+        </View>
+      </View>
+    );
+  }
+};
 
 export default App;
