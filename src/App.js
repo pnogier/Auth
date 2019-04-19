@@ -6,18 +6,26 @@ import firebase from 'firebase';
 // Local Import
 import { Header } from './components/Commons';
 import LoginForm from './components/LoginForm';
-import apikey from './constants/api';
+import {
+  apiKey,
+  authDomain,
+  databaseURL,
+  projectId,
+  storageBucket,
+  messagingSenderId
+  } from './constants/api.js';
 
 // Create a component
 class App extends Component {
   componentWillMount() {
+    console.log(apiKey);
     firebase.initializeApp({
-      apikey,
-      authDomain: 'auth-fbc12.firebaseapp.com',
-      databaseURL: 'https://auth-fbc12.firebaseio.com',
-      projectId: 'auth-fbc12',
-      storageBucket: 'auth-fbc12.appspot.com',
-      messagingSenderId: '177346767026'
+      apiKey,
+      authDomain,
+      databaseURL,
+      projectId,
+      storageBucket,
+      messagingSenderId
     });
   };
 
