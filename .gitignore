@@ -1,9 +1,9 @@
 # OSX
-#
+
 .DS_Store
 
 # Xcode
-#
+
 build/
 *.pbxuser
 !default.pbxuser
@@ -23,7 +23,7 @@ DerivedData
 project.xcworkspace
 
 # Android/IntelliJ
-#
+
 build/
 .idea
 .gradle
@@ -31,12 +31,13 @@ local.properties
 *.iml
 
 # node.js
-#
+
 node_modules/
 npm-debug.log
 yarn-error.log
 
 # BUCK
+
 buck-out/
 \.buckd/
 *.keystore
@@ -53,4 +54,9 @@ buck-out/
 */fastlane/screenshots
 
 # Bundle artifact
+
 *.jsbundle
+
+# API
+
+src/constants/api.js

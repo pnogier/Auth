@@ -2,14 +2,17 @@
 import React, { Component } from 'react';
 import { View, StatusBar, Platform } from 'react-native';
 import firebase from 'firebase';
+
+// Local Import
 import { Header } from './components/Commons';
 import LoginForm from './components/LoginForm';
+import apikey from './constants/api';
 
 // Create a component
 class App extends Component {
   componentWillMount() {
     firebase.initializeApp({
-      apiKey: 'AIzaSyD5l_cM6uKQbHlX3iVpf1aMwo-f3qZmUyY',
+      apikey,
       authDomain: 'auth-fbc12.firebaseapp.com',
       databaseURL: 'https://auth-fbc12.firebaseio.com',
       projectId: 'auth-fbc12',
