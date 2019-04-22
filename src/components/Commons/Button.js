@@ -24,6 +24,7 @@ const styles = {
   },
   buttonStyle: {
     flex: 1,
+    maxHeight: 45,
     alignSelf: 'stretch',
     backgroundColor: '#fff',
     borderRadius: 5,

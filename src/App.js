@@ -1,10 +1,10 @@
-// Import a library to help create a component
+// Import
 import React, { Component } from 'react';
 import { View, StatusBar, Platform } from 'react-native';
 import firebase from 'firebase';
 
 // Local Import
-import { Header } from './components/Commons';
+import { Header, Button, Spinner } from './components/Commons';
 import LoginForm from './components/LoginForm';
 import {
   apiKey,
@@ -15,10 +15,10 @@ import {
   messagingSenderId
   } from './constants/api.js';
 
-// Create a component
 class App extends Component {
+  state = { loggedIn: false };
+
   componentWillMount() {
-    console.log(apiKey);
     firebase.initializeApp({
       apiKey,
       authDomain,
@@ -27,6 +27,39 @@ class App extends Component {
       storageBucket,
       messagingSenderId
     });
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ loggedIn: true });
+      } else {
+        this.setState({ loggedIn: false });
+      }
+    });
+  };
+
+  renderContent() {
+    switch (this.state.loggedIn) {
+      case true:
+        return (
+        <View style={{ flex: 1 }}>
+          <Header headerText={'Home'} />
+          <Button onPress={() => firebase.auth().signOut()}>
+                Log Out
+          </Button>
+        </View>
+        );
+
+      case false:
+        return (
+          <View style={{ flex: 1 }}>
+            <Header headerText={'Firebase Authentication'} />
+            <LoginForm />
+          </View>
+        );
+
+      default:
+        return <Spinner size="large" />
+    }
   };
 
   render() {
@@ -44,10 +77,7 @@ class App extends Component {
             barStyle="dark-content"
           />
         </View>
-        <View style={{ flex: 1 }}>
-          <Header headerText={'Firebase Authentication'} />
-          <LoginForm />
-        </View>
+        {this.renderContent()}
       </View>
     );
   }
