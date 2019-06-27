@@ -67,13 +67,13 @@ class App extends Component {
       <View style={{ flex: 1 }}>
         <View
           style={{
-            backgroundColor: '#F8F8F8',
+            backgroundColor: '#000000',
             height: Platform.OS === 'ios' ? 20 : StatusBar.currentHeight,
             }}
         >
           <StatusBar
             translucent
-            backgroundColor="#F8F8F8"
+            backgroundColor="#212121"
             barStyle="dark-content"
           />
         </View>
